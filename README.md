@@ -29,12 +29,14 @@ The **data/entities** directory contains data classes that represent a single re
 
 The **data/extract** directory contains code to import different file formats.  
 
-### fixedwidth
+## fixedwidth data files
 For this example, we are using the Vehicle Repair fixed format file.
 
 1. Find a **_fixed width_** file
    - Each **_fixed width_** file type has a distinct collection of **ParsingRules**
    - The **ParsingRules** are metadata about the formatting of the text file based on available documentation.
+   - **IMPORTANT** The reason to use **ParsingRules** is because it makes it easy to create different
+     **FixedWidthParsers** in the future.
 2. Instantiate a **FixedWidthParser** object for parsing the **_fixed width_** file.
    - The **FixedWidthParser** object creates **[struct.Struct](https://docs.python.org/3/library/struct.html#classes)**
  object using the **ParsingRules**
