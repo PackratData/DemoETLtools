@@ -9,14 +9,19 @@ from app.extract.fixedwidth.parsers import FixedWidthParser
 
 def test_unpack_with_parsing_rules1():
     """"""
-
+    print()
     fixed_width_parser = FixedWidthParser(source_data_type='vehicle_repairs')
 
     fixed_width_record = '211103/27/2015 12:00:00 AM14415X01917      28213    SNOW BREAKDOWN                        HYD LEAKSENT TO CAT TO REPAIR/REPLACE MAIN HYDRAULIC CONTROL VALVE AND ASSYHO PENNINVOICE WOCE0581604$9,083.02                                                                                                 9083.0209083.02'
+    print("Use fixed width test data:")
+    print(fixed_width_record)
 
+    print("\nPass fixed width test data to the parser object")
     parsed_data = fixed_width_parser.parse_textdata(to_bytes(fixed_width_record))
+    print("\nInstantiate VehicleRepairRecord with parsed data")
     parsed_record = VehicleRepairRecord(*parsed_data)
 
+    print("\nRun assertion tests")
     assert parsed_record.dept == 2111
     assert parsed_record.jobdate == datetime.strptime('2015-03-27 00:00:00', '%Y-%m-%d %H:%M:%S')
     assert parsed_record.jobno == 14415
@@ -34,14 +39,19 @@ def test_unpack_with_parsing_rules1():
 
 def test_unpack_with_parsing_rules2():
     """"""
-
+    print()
     fixed_width_parser = FixedWidthParser(source_data_type='vehicle_repairs')
 
     fixed_width_record = '211103/26/2015 12:00:00 AM14735B31276      17713    SNOW BREAKDOWN                        CHECK NOISE IN REAR- END (DIFF)TOWED FROM VEHICLE MAINTENANCE TO INTERSTATE FORD IN MILFORDBILLS TOWING, INVOICE 165003$250.00GABRIELLI FORDREPLACE REAR , BEARINGS, SEALSU-JOINTSINVOICE 85031MS      $4570.804820.8 04820.8 '
+    print("Use fixed width test data:")
+    print(fixed_width_record)
 
+    print("\nPass fixed width test data to the parser object")
     parsed_data = fixed_width_parser.parse_textdata(to_bytes(fixed_width_record))
+    print("\nInstantiate VehicleRepairRecord with parsed data")
     parsed_record = VehicleRepairRecord(*parsed_data)
 
+    print("\nRun assertion tests")
     assert parsed_record.dept == 2111
     assert parsed_record.jobdate == datetime.strptime('2015-03-26 00:00:00', '%Y-%m-%d %H:%M:%S')
     assert parsed_record.jobdate.strftime('%Y-%m-%d %H:%M:%S') == '2015-03-26 00:00:00'

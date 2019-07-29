@@ -52,7 +52,7 @@ For this example, we are using the Vehicle Repair fixed format file.
 7. Load the _transformed_ data elements into the Target data 
 
 
-Note: It is possible to see a sampling of steps 2, 4, 5 and 6 in 
+Note: It is possible to exercise the code behind steps 2, 4, 5 and 6 by running 
 the pytest **`tests/func/test_fixed_width_parser.py`**
 
 
@@ -65,7 +65,11 @@ the pytest **`tests/func/test_fixed_width_parser.py`**
 
 ## Testing
 Use pytest to demonstrate the results
-
-```shell script
- pytest tests/func/test_fixed_width_parser.py
-```
+- Run the pytest
+  ```shell script
+   pytest tests/func/test_fixed_width_parser.py
+  ```
+- Print output to console (-s) and run verbose (-v)  
+  ```shell script
+  pytest tests/func/test_fixed_width_parser.py -s -v
+  ```
