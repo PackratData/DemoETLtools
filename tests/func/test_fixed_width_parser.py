@@ -3,6 +3,7 @@ from decimal import Decimal
 from datetime import datetime
 
 from app.utilities import to_bytes
+from app.utilities.enums import EtlDataEntities
 from app.data.entities.vehicles import VehicleRepairRecord
 from app.extract.fixedwidth.parsers import FixedWidthParser
 
@@ -10,7 +11,7 @@ from app.extract.fixedwidth.parsers import FixedWidthParser
 def test_unpack_with_parsing_rules1():
     """"""
     print()
-    fixed_width_parser = FixedWidthParser(source_data_type='vehicle_repairs')
+    fixed_width_parser = FixedWidthParser(source_data_type=EtlDataEntities.VEHICLE_REPAIRS.value)
 
     fixed_width_record = '211103/27/2015 12:00:00 AM14415X01917      28213    SNOW BREAKDOWN                        HYD LEAKSENT TO CAT TO REPAIR/REPLACE MAIN HYDRAULIC CONTROL VALVE AND ASSYHO PENNINVOICE WOCE0581604$9,083.02                                                                                                 9083.0209083.02'
     print("Use fixed width test data:")
@@ -40,7 +41,7 @@ def test_unpack_with_parsing_rules1():
 def test_unpack_with_parsing_rules2():
     """"""
     print()
-    fixed_width_parser = FixedWidthParser(source_data_type='vehicle_repairs')
+    fixed_width_parser = FixedWidthParser(source_data_type=EtlDataEntities.VEHICLE_REPAIRS.value)
 
     fixed_width_record = '211103/26/2015 12:00:00 AM14735B31276      17713    SNOW BREAKDOWN                        CHECK NOISE IN REAR- END (DIFF)TOWED FROM VEHICLE MAINTENANCE TO INTERSTATE FORD IN MILFORDBILLS TOWING, INVOICE 165003$250.00GABRIELLI FORDREPLACE REAR , BEARINGS, SEALSU-JOINTSINVOICE 85031MS      $4570.804820.8 04820.8 '
     print("Use fixed width test data:")
