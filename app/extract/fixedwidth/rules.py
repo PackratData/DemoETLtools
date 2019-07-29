@@ -1,5 +1,6 @@
 import attr
 
+from app.utilities.enums import EtlDataEntities
 
 DATA_TYPES = ['string', 'integer', 'decimal', 'boolean', 'bigint', 'tinyint', 'datetime', 'date', 'double']
 
@@ -9,6 +10,7 @@ DATA_TYPES = ['string', 'integer', 'decimal', 'boolean', 'bigint', 'tinyint', 'd
 # Developer Notes:
 # *
 ###########################################################
+
 
 @attr.s
 class FixedWidthParsingRule(object):
@@ -40,6 +42,7 @@ class FixedWidthParsingRule(object):
 # * These rules are used to parse fixed width text
 ###########################################################
 
+
 class ParsingRules(object):
     """
     ParsingRules is a reference object that contains metadata used to
@@ -57,7 +60,7 @@ class ParsingRules(object):
 
     _rules = {
         # vehicle_repairs
-        'vehicle_repairs': (
+        EtlDataEntities.VEHICLE_REPAIRS.value: (
             FixedWidthParsingRule('dept', 'Department', 1, 4, 'integer'),
             FixedWidthParsingRule('jobdate', 'Job Date', 5, 22, 'date'),
             FixedWidthParsingRule('jobno', 'Job Number', 27, 5, 'integer'),
