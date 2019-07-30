@@ -64,12 +64,22 @@ the pytest **`tests/func/test_fixed_width_parser.py`**
 ### Data Source
 - Vehicle Repair data comes from https://catalog.data.gov/dataset/vehicle-repairs
 
+## Importing Source Data
+- Run source data import
+  ```shell script
+  python run_source_data_import.py
+  ```
+- This will search the directory **`source_data`** for all files
+  - based on file name it will choose a parser
+  - right now only Fixed Width Parser is supported for Vehicle Repairs
+- For now the parsed data is just printed to the console  
+  
 
 ## Testing
 Use pytest to demonstrate the results
 - Run the pytest
   ```shell script
-   pytest tests/func/test_fixed_width_parser.py
+  pytest tests/func/test_fixed_width_parser.py
   ```
 - Print output to console (-s) and run verbose (-v)  
   ```shell script
