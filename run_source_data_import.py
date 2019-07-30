@@ -6,7 +6,6 @@ from os.path import isfile, join
 import inspect
 
 from app.data.entities import get_data_entity_class
-from app.data.entities.vehicles import VehicleRepairRecord
 from app.extract.fixedwidth.parsers import FixedWidthParser
 from app.utilities import (
     get_data_entity_type,
@@ -14,7 +13,6 @@ from app.utilities import (
     to_bytes,
 )
 from app.utilities.enums import (
-    EtlDataEntities,
     EtlFileTypes,
 )
 
@@ -55,7 +53,9 @@ for sourcedata_file in sourcedata_files:
     with open(sourcedata_filepath, 'r') as f:
         n = 1
 
-        xform_data_entity = get_data_entity_class(etl_data_entity_type=etl_data_entity_type)
+        transformed_data_entity = get_data_entity_class(etl_data_entity_type=etl_data_entity_type)
+
+        target_data_entity = list()
 
         for line in f:
             try:
@@ -69,7 +69,17 @@ for sourcedata_file in sourcedata_files:
 
             try:
                 # load it into the Data Entity class
-                parsed_record = xform_data_entity(*parsed_data)
+                parsed_record = transformed_data_entity(*parsed_data)
+            except Exception as e:
+                print("problem with line #{}".format(n))
+                print(line)
+                print(e)
+                break
+
+            try:
+                # Load data into target
+                target_data_entity.append(parsed_record)
+
             except Exception as e:
                 print("problem with line #{}".format(n))
                 print(line)
@@ -77,5 +87,8 @@ for sourcedata_file in sourcedata_files:
                 break
 
             n += 1
+
+        print("'target_data_entity' is:")
+        print(target_data_entity)
 
 print("\n")
