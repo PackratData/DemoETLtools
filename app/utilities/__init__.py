@@ -1,12 +1,13 @@
 from .enums import EtlDataEntities, EtlFileTypes
 
 
-def get_data_entity(filename):
+def get_data_entity_type(filename):
     if filename.lower().startswith('vehicle_repairs.'):
         return EtlDataEntities.VEHICLE_REPAIRS.value
 
     else:
         return TypeError("{} is not a supported data entity".format(filename))
+
 
 def get_file_type(filename):
 

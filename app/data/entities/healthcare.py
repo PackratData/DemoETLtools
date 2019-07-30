@@ -1,5 +1,5 @@
 import attr
-from decimal import decimal
+from decimal import Decimal
 
 from app.data.validators import (
     check_longitude,
@@ -20,11 +20,14 @@ class EHRPaymentRecord(object):
 
     Reference
     https://healthdata.gov/dataset/electronic-health-record-ehr-incentive-program-payments-eligible-providers
+
+    DEVELOPER NOTES
+    * There are known problems with the structured data class with Decimal and validators and bytes
     """
 
     # Declare core attributes of EHR Payment Record
-    x = attr.ib(validator=[attr.validators.instance_of(decimal), check_longitude])              # longitude
-    y = attr.ib(validator=[attr.validators.instance_of(decimal), check_latitude])               # latitude
+    x = attr.ib(validator=[attr.validators.instance_of(Decimal), check_longitude])              # longitude
+    y = attr.ib(validator=[attr.validators.instance_of(Decimal), check_latitude])               # latitude
     provider_name = attr.ib(validator=attr.validators.instance_of(str))
     npi = attr.ib(converter=int)
     medicaid_ep_hospital_type = attr.ib(validator=attr.validators.instance_of(str))
@@ -42,6 +45,6 @@ class EHRPaymentRecord(object):
     payee_npi = attr.ib(converter=int)
     disbursement_amount = attr.ib(converter=int)
     total_payments = attr.ib(converter=int)
-    longitude = attr.ib(validator=[attr.validators.instance_of(decimal), check_longitude])      # longitude
-    latitude = attr.ib(validator=[attr.validators.instance_of(decimal), check_latitude])        # latitude
+    longitude = attr.ib(validator=[attr.validators.instance_of(Decimal), check_longitude])      # longitude
+    latitude = attr.ib(validator=[attr.validators.instance_of(Decimal), check_latitude])        # latitude
     fid = attr.ib(converter=int)
