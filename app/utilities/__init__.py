@@ -1,4 +1,11 @@
+import random
+from time import sleep
 from .enums import EtlDataEntities, EtlFileTypes
+
+
+def random_delay(min_delay_seconds: int, max_delay_seconds: int):
+    """implement a random delay to imitate human behavior"""
+    sleep(random.randint(min_delay_seconds, max_delay_seconds))
 
 
 def get_data_entity_type(filename):
@@ -22,6 +29,9 @@ def get_file_type(filename):
 
     elif filename.lower().endswith('.json'):
         return EtlFileTypes.JSON.value
+
+    elif filename.lower().endswith('tsv'):
+        return EtlFileTypes.TSV.value
 
     else:
         return TypeError("{} is not a supported file type".format(filename))
