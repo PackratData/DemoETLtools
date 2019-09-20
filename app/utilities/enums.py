@@ -17,6 +17,7 @@ class EtlFileTypes(Enum):
     CSV = 'csv'     # CSV Delimited Text File
     XML = 'xml'     # XML File
     JSON = 'json'   # JSON File
+    TSV = 'tsv'     # TSV Tab Separated Variable File
 
 
 class ContentTypes(Enum):
